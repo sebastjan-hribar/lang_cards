@@ -40,9 +40,7 @@ title: "LangCards" do
     end
 
     button "List all flashcard", margin: 5 do
-      unless @db == true
-        alert "No active database!"
-      else
+      if @db
         window title: "All flashcards" do
         background lavender
             @db.transaction(true) do
@@ -54,6 +52,8 @@ title: "LangCards" do
               end
             end
         end
+      else
+        alert "No database is active!"
       end
     end
   end
