@@ -17,7 +17,7 @@ title: "LangCards" do
 
   @store_for_all_dbs = YAML::Store.new("store_for_all_dbs.store")
 
-  @db = YAML::Store.new("default.store")
+  $db = YAML::Store.new("default.store")
 
 #####################################################
 # Instructions, About and listing of all FlashCards #
@@ -40,11 +40,11 @@ title: "LangCards" do
     end
 
     button "List all flashcard", margin: 5 do
-      if @db
+      if $db
         window title: "All flashcards" do
         background lavender
-            @db.transaction(true) do
-              @all_cards = @db.roots
+            $db.transaction(true) do
+              @all_cards = $db.roots
               @all_cards.sort!
               @all_cards.each_with_index do |c,i|
                 str = "  #{i+1}. #{c}"
@@ -99,10 +99,10 @@ title: "LangCards" do
 
     button "Activate the selected database", margin: 5 do
       @selected_database = @list_of_all_dbs.text
-      @db = YAML::Store.new("#{@selected_database}.store")
+      $db = YAML::Store.new("#{@selected_database}.store")
 
-      @db.transaction(true) do
-      @all_cards_list.items = @db.roots
+      $db.transaction(true) do
+      @all_cards_list.items = $db.roots
       end
     end
   end
@@ -132,17 +132,17 @@ title: "LangCards" do
           @part_of_speech.text, @example.text)
 
           unless card.name == ""
-            @db.transaction do
-              @db[card.name] = card
-              @db_roots = @db.roots
+            $db.transaction do
+              $db[card.name] = card
+              $db_roots = $db.roots
             end
 
-            @db.transaction(true) do
-              @all_cards = @db.roots
+            $db.transaction(true) do
+              @all_cards = $db.roots
             end
 
-            @db.transaction do
-              @all_cards_list.items = @db.roots
+            $db.transaction do
+              @all_cards_list.items = $db.roots
             end
 
             # Clear the input fields after save or update
@@ -176,30 +176,30 @@ title: "LangCards" do
       @all_cards_list = list_box
 
       button "Delete from database" do
-        @db.transaction do
+        $db.transaction do
           if @all_cards_list.items.empty?
             alert("No flashcard is selected.")
           else
             del = @all_cards_list.text
-            @db.delete(del)
+            $db.delete(del)
           end
         end
-        @db.transaction do
-        @all_cards_list.items = @db.roots
+        $db.transaction do
+        @all_cards_list.items = $db.roots
         end
       end
 
       button "Retrieve for update" do
-        @db.transaction(true) do
+        $db.transaction(true) do
           abc = @all_cards_list.text
           if @all_cards_list.items.empty?
             alert("No flashcard is selected.")
           else
             @name.text = abc
-            @source.text = @db[abc].source
-            @target.text = @db[abc].target
-            @part_of_speech.choose(@db[abc].part_of_speech)
-            @example.text = @db[abc].example
+            @source.text = $db[abc].source
+            @target.text = $db[abc].target
+            @part_of_speech.choose($db[abc].part_of_speech)
+            @example.text = $db[abc].example
           end
         end
       end
@@ -217,16 +217,16 @@ title: "LangCards" do
     background rosybrown
     caption "Learn"
     button "Select random flashcard" do
-      @db.transaction(true) do
-          @all_cards = @db.roots
+      $db.transaction(true) do
+          @all_cards = $db.roots
           if @all_cards.empty?
             alert("Database is empty.")
           else
             samp_name = @all_cards.sample
-            samp_source = @db[samp_name].source
-            samp_target = @db[samp_name].target
-            samp_part_of_speech = @db[samp_name].part_of_speech
-            samp_example = @db[samp_name].example
+            samp_source = $db[samp_name].source
+            samp_target = $db[samp_name].target
+            samp_part_of_speech = $db[samp_name].part_of_speech
+            samp_example = $db[samp_name].example
               @samp_area.clear do
                 button(samp_name) do
                   @samp_source.text = samp_source
