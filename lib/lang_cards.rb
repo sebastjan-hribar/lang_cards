@@ -73,6 +73,10 @@ title: "LangCards" do
       @new_db = @new_db_entry_field.text
       create_new_db(@new_db, @store_for_all_dbs)
       @new_db_entry_field.text = ""
+
+      @store_for_all_dbs.transaction(true) do
+        @list_of_all_dbs.items = @store_for_all_dbs.roots
+    end
     end
   end
 ##############################
