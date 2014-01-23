@@ -8,6 +8,11 @@ instructions.
 
 -- not yet published as a gem --
 
+  Download, unpack and run lang_cards.rb file in the lib directory.
+  Requirements: green shoes (gem install green_shoes)
+
+-- not yet published as a gem --
+
 Add this line to your application's Gemfile:
 
     gem 'lang_cards'
