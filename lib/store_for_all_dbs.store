@@ -1,0 +1,5 @@
+---
+test1: !ruby/object:NewDB::Db
+  name: test1
+break: !ruby/object:NewDB::Db
+  name: break
