@@ -22,6 +22,15 @@ Or install it yourself as:
 
 ## Usage
 
+Runing the application
+1. Windows
+    1.1. Navigate to c:\my\installation\folder\lang_cards\lib\lang_cards.rb and double click
+    1.2. run from the command line: land_cards
+    
+2. Linux
+    2.1. run from the command line: land_cards
+
+Usage
 See instructions in the application.
 
 ## Contributing
