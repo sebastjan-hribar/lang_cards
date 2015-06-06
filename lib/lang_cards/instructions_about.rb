@@ -41,10 +41,8 @@ module Instructions
 
   ABOUT = "About
   \LangCards
-  \t0.0.1
   \tAuthor: Sebastjan Hribar
   \te-mail: sebastjan.hribar@gmail.com
-  \tCredits: ashbb, the creator of Green Shoes
-  \tLicense: "
+  \tCredits: ashbb, the creator of Green Shoes"
 
 end
