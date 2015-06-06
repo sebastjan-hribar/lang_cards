@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["sebastjan.hribar@gmail.com"]
   spec.description   = %q{This application supports you in learning foreing language vocabulary.}
   spec.summary       = %q{Language flash-cards application}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/sebastjan-hribar/lang_cards"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
